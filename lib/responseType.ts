@@ -14,6 +14,9 @@ export type ProjectContentResponse = {
     totalRatings: number;
   };
   keywords: string[];
+  socialMediaLinks: SocialMediaLinks;
+  customSections: CustomSection[];
+  showContactSection: boolean;
 };
 
 // Header & Footer
@@ -84,4 +87,29 @@ export type PackageData = {
   title: string;
   features: string[];
   image: string;
+};
+
+export type SocialMediaLinks = {
+  facebook: string | null;
+  instagram: string | null;
+  tiktok: string | null;
+  twitter: string | null;
+  youtube: string | null;
+};
+
+export type CustomSectionCard = {
+  id: string;
+  sectionId: string;
+  title: string;
+  description: string;
+  icon: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CustomSection = {
+  id: string;
+  title: string;
+  description: string;
+  cards: CustomSectionCard[];
 };

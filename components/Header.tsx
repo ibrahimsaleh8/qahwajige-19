@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/blog", label: "خدمات الضيافة" },
   { href: "/#packages", label: "باقاتنا" },
   { href: "/#gallery", label: "المعرض" },
-  { href: "/#contact", label: "تواصل معنا" },
 ];
 
 type HeaderProps = HeaderData & {

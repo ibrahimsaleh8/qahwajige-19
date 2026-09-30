@@ -18,7 +18,7 @@ export default function PremiumPackagesSection({
   if (!packages?.length) return null;
 
   return (
-    <section id="packages" dir="rtl" className="py-28 pb-0 bg-[#E6E4DF]">
+    <section id="packages" dir="rtl" className="py-10 pb-0 bg-[#E6E4DF]">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-24">

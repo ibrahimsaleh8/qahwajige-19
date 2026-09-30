@@ -10,32 +10,8 @@ export function GallerySection({ gallery }: { gallery: GalleryImageData[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="gallery" dir="rtl" className="py-28 bg-[#E6E4DF]">
+    <section id="gallery" dir="rtl" className="py-10 bg-[#E6E4DF]">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
-          <div>
-            <span className="inline-block border border-black px-6 py-2 text-sm font-bold uppercase bg-white mb-6">
-              معرض الأعمال
-            </span>
-
-            <h2 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tight text-[#111111] mb-4">
-              من ذكريات مناسباتنا
-            </h2>
-
-            <p className="text-[#4A4A4A] max-w-lg">
-              لقطات حية من فعاليات قمنا بخدمتها في الرياض.
-            </p>
-          </div>
-
-          <a
-            href="#"
-            className="hidden md:flex items-center gap-2 font-bold uppercase border border-black px-6 py-3 bg-white hover:bg-[#C8553D] hover:text-white hover:border-[#C8553D] transition-all duration-200">
-            عرض الكل
-            <ArrowLeft className="w-4 h-4" />
-          </a>
-        </div>
-
         {/* Grid */}
         {gallery.length === 0 ? (
           <div className="border border-black p-20 text-center bg-white">

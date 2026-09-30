@@ -104,6 +104,15 @@ export const FetchProjectData = async () => {
         address: "الرياض، المملكة العربية السعودية",
       },
       keywords: [],
+      socialMediaLinks: {
+        instagram: null,
+        facebook: null,
+        twitter: null,
+        tiktok: null,
+        youtube: null,
+      },
+      customSections: [],
+      showContactSection: true,
     };
   }
   return { data };

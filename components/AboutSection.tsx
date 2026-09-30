@@ -11,10 +11,10 @@ export default function AboutSection({
   whyUsDescription: string;
 }) {
   return (
-    <section id="about" dir="rtl" className="bg-[#E6E4DF] py-20 pb-0">
+    <section id="about" dir="rtl" className="bg-[#E6E4DF] pb-0">
       <div className="container text-center flex flex-col items-center mx-auto px-6">
         {/* HEADER */}
-        <div className="mb-24">
+        <div className="mb-10">
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-black mb-6">
             {label}
           </p>
@@ -27,7 +27,7 @@ export default function AboutSection({
 
         {/* DESCRIPTION BLOCK */}
         {description1 && (
-          <div className="bg-white border-2 border-black p-12 max-w-4xl mb-32">
+          <div className="bg-white border-2 border-black p-12 max-w-4xl mb-10">
             <p className="text-lg md:text-xl leading-relaxed text-[#4A4A4A]">
               {description1}
             </p>
@@ -37,7 +37,7 @@ export default function AboutSection({
 
       {/* WHY US STRIP */}
       {whyUsDescription && (
-        <div className="bg-black text-white py-24 border-y-2 border-black">
+        <div className="bg-black text-white py-10 border-y-2 border-black">
           <div className="max-w-5xl mx-auto px-6 text-center">
             <h3 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight mb-8">
               لماذا نحن؟
@@ -65,7 +65,7 @@ export default function AboutSection({
 
       {/* FEATURES POSTER GRID */}
       {features && features.length > 0 && (
-        <div className="max-w-7xl mx-auto px-6 py-32 pb-0">
+        <div className="max-w-7xl mx-auto px-6 py-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-black border border-black">
             {features.map((item, index) => (
               <div

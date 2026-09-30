@@ -2,14 +2,16 @@
 import type { Metadata } from "next";
 import { Almarai } from "next/font/google";
 import "./globals.css";
-import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
-import { Analytics } from "@vercel/analytics/next";
+import { currentURL } from "@/lib/ProjectId";
 import Script from "next/script";
+import { fetchMetaData } from "@/lib/FetchMetaData";
+import { Analytics } from "@vercel/analytics/next";
+
 const mainFont = Almarai({
   weight: ["300", "400", "700", "800"],
   subsets: ["arabic"],
 });
-type MetaDataResponseDataType = {
+export type MetaDataResponseDataType = {
   title: string;
   description: string;
   keywords: string[];
@@ -18,15 +20,7 @@ type MetaDataResponseDataType = {
 
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const res = await fetch(
-      `${APP_URL}/api/project/${CurrentProjectId}/metadata`,
-      {
-        next: {
-          tags: ["metadata"],
-        },
-      },
-    );
-    const data: MetaDataResponseDataType = await res.json();
+    const data = await fetchMetaData();
 
     const title = data.title;
     const description = data.description;
@@ -34,6 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const keywords = data.keywords;
 
     return {
+      metadataBase: new URL(currentURL),
       title,
       description,
       keywords,
@@ -56,6 +51,9 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       alternates: {
         canonical: currentURL,
+      },
+      verification: {
+        google: "c3kYW2T2XmHYO7FKWjPQU7XMh4qXm-GfY-PzWHvg03Q",
       },
     };
   } catch (error) {

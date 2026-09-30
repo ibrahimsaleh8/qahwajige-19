@@ -1,7 +1,8 @@
-import { APP_URL, CurrentProjectId } from "@/lib/ProjectId";
+import { APP_URL, CurrentProjectId, currentURL } from "@/lib/ProjectId";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
 
 type Article = {
   id: string;
@@ -20,9 +21,31 @@ type GetArticlesResponse = {
   };
 };
 
+export const metadata: Metadata = {
+  title: "خدمات الضيافة | مقالات عن القهوة العربية وتنظيم المناسبات",
+  description:
+    "اكتشف مقالات متخصصة في خدمات الضيافة، القهوة العربية، وتنظيم المناسبات، مع نصائح احترافية وأفكار ملهمة للارتقاء بتجربة ضيوفك.",
+  alternates: {
+    canonical: `${currentURL}/blog`,
+  },
+  openGraph: {
+    title: "خدمات الضيافة | مقالات عن القهوة العربية وتنظيم المناسبات",
+    description:
+      "اكتشف مقالات متخصصة في خدمات الضيافة، القهوة العربية، وتنظيم المناسبات، مع نصائح احترافية وأفكار ملهمة للارتقاء بتجربة ضيوفك.",
+    url: `${currentURL}/blog`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "خدمات الضيافة | مقالات عن القهوة العربية وتنظيم المناسبات",
+    description:
+      "اكتشف مقالات متخصصة في خدمات الضيافة، القهوة العربية، وتنظيم المناسبات، مع نصائح احترافية وأفكار ملهمة للارتقاء بتجربة ضيوفك.",
+  },
+};
+
 export default async function ArticlesPage() {
   const res = await fetch(
-    `${APP_URL}/api/project/${CurrentProjectId}/articles`,
+    `${APP_URL}/api/project/${CurrentProjectId}/articles/category/خدمات-الضيافة`,
   );
 
   if (!res.ok) {
@@ -37,7 +60,7 @@ export default async function ArticlesPage() {
       id="articles"
       dir="rtl"
       className="py-24 min-h-[60vh] bg-main-background">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container mx-auto px-6">
         {/* Back Link */}
         <Link
           href="/"
@@ -67,7 +90,7 @@ export default async function ArticlesPage() {
             <p className="text-low-color">لا توجد مقالات متاحة حالياً.</p>
           </div>
         ) : (
-          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid md:gap-6 gap-3 grid-cols-2 lg:grid-cols-4">
             {articles.map((article, index) => (
               <Link
                 key={article.id}
@@ -75,7 +98,7 @@ export default async function ArticlesPage() {
                 className="group flex flex-col bg-card-background border border-black/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
                 {/* Image */}
                 {article.coverImage ? (
-                  <div className="relative w-full aspect-4/3 overflow-hidden">
+                  <div className="relative w-full md:aspect-4/3 aspect-3/2 overflow-hidden">
                     <Image
                       src={article.coverImage}
                       alt={article.title}
@@ -92,35 +115,32 @@ export default async function ArticlesPage() {
                 )}
 
                 {/* Content */}
-                <div className="p-8 flex flex-col flex-1">
-                  <h2 className="text-2xl font-bold mb-4 text-main-black leading-snug line-clamp-2">
+                <div className="md:p-6 p-2 flex flex-col flex-1">
+                  <h2 className="md:text-lg text-base font-bold mb-4 text-main-black leading-snug line-clamp-2">
                     {article.title}
                   </h2>
 
                   {article.content && (
-                    <p className="text-sm text-low-color leading-relaxed line-clamp-3 mb-8 flex-1">
+                    <p className="md:text-sm text-xs text-low-color leading-relaxed line-clamp-3 mb-8 flex-1">
                       {article.content.replace(/<[^>]+>/g, "")}
                     </p>
                   )}
 
                   {/* Footer */}
-                  <div className="border-t border-black/10 pt-6 flex items-center justify-between text-sm">
-                    <span className="text-low-color">
-                      {new Date(article.createdAt).toLocaleDateString("ar-SA", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
-
-                    <span className="font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                      اقرأ المقال
-                      <ArrowLeft
-                        className="w-4 h-4 text-main-color"
-                        strokeWidth={2.5}
-                      />
-                    </span>
-                  </div>
+                  <span className="text-low-color block mb-2">
+                    {new Date(article.createdAt).toLocaleDateString("ar-SA", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                  <p className="font-bold text-xs w-full py-2 text-center bg-black text-white flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
+                    اقرأ المقال
+                    <ArrowLeft
+                      className="w-4 h-4 text-main-color"
+                      strokeWidth={2.5}
+                    />
+                  </p>
                 </div>
               </Link>
             ))}
